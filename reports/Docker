@@ -1,0 +1,88 @@
+# Docker & DevOps – Week 1 Report
+
+## Student Role
+Role: Docker and DevOps Engineer  
+Responsible Student: Ali Emir Nur
+
+---
+
+## Purpose of Docker Usage
+Docker is used in this project to ensure:
+- Consistent development environment for all team members
+- Isolation of services (Application & Database)
+- Easy deployment and testing using containerization
+- Platform-independent execution
+
+---
+
+## Planned Docker Architecture
+
+The system will consist of two Docker containers:
+
+### 1. PostgreSQL Database Container
+- Base Image: postgres:15 (official image)
+- Purpose: Store student information persistently
+- Data Persistence: Docker Volume
+- Environment Variables:
+  - POSTGRES_USER
+  - POSTGRES_PASSWORD
+  - POSTGRES_DB
+
+### 2. C++ Application Container
+- Base Image: ubuntu:22.04
+- Responsibilities:
+  - Connect to PostgreSQL database
+  - Perform CRUD operations (Create, Read, Update, Delete)
+- Build Tools:
+  - g++
+  - cmake
+  - libpqxx (PostgreSQL C++ client)
+
+---
+
+## Docker Networking Plan
+- Docker Compose will create a private bridge network
+- Containers will communicate using service names
+- Database will NOT be exposed to the host directly
+
+---
+
+## Volume Management
+- A named Docker volume will be used for PostgreSQL
+- This ensures data persistence even if containers are stopped or removed
+
+Example:
+- Volume Name: db_data
+- Mount Path: /var/lib/postgresql/data
+
+---
+
+## Planned Docker Files (Week 1)
+The following Docker-related files will be created during the project:
+
+- docker-compose.yml  
+- docker/Dockerfile.app  
+- docker/.dockerignore  
+
+These files will be implemented starting from Week 2.
+
+---
+
+## Docker Hub Plan
+- Docker Hub account will be created using school email
+- Public images will be pushed for evaluation
+- Planned image names:
+
+  - <dockerhub_username>/sis-project-postgres
+  - <dockerhub_username>/sis-project-app
+
+Docker Hub links will be added to README.md once images are pushed.
+
+---
+
+## Week 1 Summary
+In the first week:
+- Docker architecture planning was completed
+- Container responsibilities were clearly defined
+- Volume and network structure was designed
+- Docker implementation is planned for Week 2
