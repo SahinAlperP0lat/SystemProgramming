@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: sis-db
+    environment:
+      POSTGRES_USER: sis_user
+      POSTGRES_PASSWORD: sis_pass
+      POSTGRES_DB: sis_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - sis_network
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.app
+    container_name: sis-app
+    depends_on:
+      - db
+    networks:
+      - sis_network
+
+volumes:
+  db_data:
+
+networks:
+  sis_network:
+    driver: bridge
