@@ -1,16 +1,19 @@
-#ifndef DB_HPP
-#define DB_HPP
+#ifndef DATABASE_H
+#define DATABASE_H
 
 #include <pqxx/pqxx>
 #include <string>
 
 class Database {
 public:
-    Database();
-    bool connect();
+    Database(const std::string& connection_str);
+    ~Database();
+
+    pqxx::connection* getConnection();
+    void insertStudent(int id, const std::string& name);
 
 private:
-    std::string connection_string;
+    pqxx::connection* conn;
 };
 
 #endif

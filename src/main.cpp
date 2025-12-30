@@ -1,15 +1,6 @@
-#include <iostream>
 #include "db.hpp"
 
 int main() {
-    std::cout << "Student Information System - C++ App\n";
-
-    Database db;
-    if (db.connect()) {
-        std::cout << "Database connection successful.\n";
-    } else {
-        std::cout << "Database connection failed.\n";
-    }
-
+    Database db("host=localhost port=5432 dbname=sis user=postgres password=yourpassword");
     return 0;
 }
