@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY . .
 
-RUN echo "C++ application will be built here"
+# Build the application
+RUN mkdir -p build && cd build && cmake .. && make
 
-CMD ["bash"]
+# Run the application
+CMD ["./build/system_program"]
