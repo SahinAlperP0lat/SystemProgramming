@@ -10,6 +10,7 @@ public:
     ~Database();
 
     pqxx::connection* getConnection();
+    void insertStudent(int id, const std::string& name);
 
 private:
     pqxx::connection* conn;
