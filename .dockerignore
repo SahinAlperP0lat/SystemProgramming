@@ -1,0 +1,7 @@
+build/
+test_app
+*.o
+*.a
+*.so
+CMakeCache.txt
+CMakeFiles/
