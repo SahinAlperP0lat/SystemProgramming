@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: postgres:15
@@ -12,6 +10,11 @@ services:
       - db_data:/var/lib/postgresql/data
     networks:
       - sis_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sis_user -d sis_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
   app:
     build:
@@ -19,13 +22,21 @@ services:
       dockerfile: docker/Dockerfile.app
     container_name: sis-app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - sis_network
     tty: true
     volumes:
       - .:/app
     environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_USER: sis_user
+      DB_PASSWORD: sis_pass
+      DB_NAME: sis_db
+    command: ["bash", "-lc", "sleep infinity"]
+
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
       DB_USER: ${POSTGRES_USER}
