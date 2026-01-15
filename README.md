@@ -59,8 +59,8 @@ Project Schedule
 
 Docker Hub Images
 
-Images are named following the convention: [school-username]/[project-name]-[component]:[tag].
-
-   PostgreSQL: Pending (Will be provided by Student 2 by Week 2)
-
-C++ App: Pending (Will be provided by Student 2 by Week 2)
+    link: https://hub.docker.com/r/aliemirnur/systemprogramming-sis
+    
+    PostgreSQL: Pending (Will be provided by Student 2 by Week 2)
+    
+    C++ App: Pending (Will be provided by Student 2 by Week 2)
